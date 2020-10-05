@@ -1,0 +1,25 @@
+# .circleci/config.yml
+version: 2
+jobs:
+  basic-node-example:
+    branches:
+      only:
+        - feature*
+    docker:
+      - image: "cimg/base:stable"
+    steps:
+      - checkout
+      - node/install:
+          install-yarn: true
+      - run:
+          command: yarn install
+      - run:
+          command: yarn run test
+          name: Run YARN tests
+
+orbs:
+  node: circleci/node@x.y
+workflows:
+  test_my_app:
+    jobs:
+      - basic-node-example
