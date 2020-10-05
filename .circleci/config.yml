@@ -47,6 +47,3 @@ workflows:
       - publish-latest:
           requires:
             - build
-          branches:
-            only:
-              - /feature-*/
