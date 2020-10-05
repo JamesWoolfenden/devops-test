@@ -41,13 +41,12 @@ workflows:
   build-master:
     jobs:
       - build:
-          filters:
-            branches:
-              only:
-                - /feature-*/
+          branches:
+            only:
+              - /feature-*/
       - publish-latest:
           requires:
             - build
-          filters:
+          branches:
             only:
               - /feature-*/
