@@ -2,9 +2,6 @@
 version: 2.1
 jobs:
   basic-node-example:
-    branches:
-      only:
-        - feature*
     docker:
       - image: "cimg/base:stable"
     steps:
