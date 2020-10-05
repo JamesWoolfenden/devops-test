@@ -1,22 +1,21 @@
-# .circleci/config.yml
-version: 2.1
+version: 2
 jobs:
-  basic-node-example:
-    docker:
-      - image: "cimg/base:stable"
-    steps:
-      - checkout
-      - node/install:
-          install-yarn: true
-      - run:
-          command: yarn install
-      - run:
-          command: yarn run test
-          name: Run YARN tests
-
-orbs:
-  node: circleci/node@4.1.0
+      build:
+        environment:
+          IMAGE_NAME: jameswoolfenden/buildit
+        docker:
+          - image: circleci/buildpack-deps:stretch
+        steps:
+          - checkout
+          - setup_remote_docker
+          - run:
+              name: Build Docker image
+              command: docker build -t $IMAGE_NAME:latest .
 workflows:
-  test_my_app:
+  version: 2
+  build-master:
     jobs:
-      - basic-node-example
+      - build:
+          filters:
+            branches:
+              only: master
