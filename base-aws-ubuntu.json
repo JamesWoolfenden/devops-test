@@ -1,0 +1,56 @@
+{
+  "variables": {
+    "aws_access_key": "{{env `AWS_ACCESS_KEY_ID`}}",
+    "aws_secret_key": "{{env `AWS_SECRET_ACCESS_KEY`}}",
+    "aws_session_token": "{{env `AWS_SESSION_TOKEN`}}",
+    "build_number": "{{env `BUILD_NUMBER`}}",
+    "aws-region": "{{env `AWS_REGION`}}",
+    "instance_type": "t2.micro"
+  },
+  "provisioners": [
+    {
+      "type": "file",
+      "source": "index.js",
+      "destination": "index.js"
+    },
+    {
+      "type": "file",
+      "source": "package.json",
+      "destination": "package.json"
+    },
+    {
+      "type": "shell",
+      "script": "install.sh"
+    }
+  ],
+  "builders": [
+    {
+      "type": "amazon-ebs",
+      "access_key": "{{user `aws_access_key`}}",
+      "secret_key": "{{user `aws_secret_key`}}",
+      "token": "{{user `aws_session_token`}}",
+      "region": "{{user `aws_region`}}",
+      "source_ami_filter": {
+        "filters": {
+          "virtualization-type": "hvm",
+          "name": "ubuntu/images/*ubuntu-bionic-18.04-amd64-server-*",
+          "root-device-type": "ebs"
+        },
+        "owners": ["099720109477"],
+        "most_recent": true
+      },
+      "instance_type": "{{ user `instance_type` }}",
+      "ssh_username": "ubuntu",
+      "ssh_interface": "session_manager",
+      "communicator": "ssh",
+      "ami_name": "Ubuntu-v{{user `build_number`}}-{{timestamp}}-AMI",
+      "ami_description": "Ubuntu AMI",
+      "ami_virtualization_type": "hvm",
+      "ami_users": "{{ user `ami_users` }}",
+      "temporary_key_pair_name": "ubuntu-packer-{{timestamp}}",
+      "run_tags": {
+        "Name": "ubuntu-packer"
+      }
+    }
+  ]
+}
