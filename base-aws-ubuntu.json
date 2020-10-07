@@ -41,7 +41,6 @@
       },
       "instance_type": "{{ user `instance_type` }}",
       "ssh_username": "ubuntu",
-      "ssh_interface": "session_manager",
       "communicator": "ssh",
       "ami_name": "Ubuntu-v{{user `build_number`}}-{{timestamp}}-AMI",
       "ami_description": "Ubuntu AMI",
