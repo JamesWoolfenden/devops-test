@@ -27,6 +27,7 @@ jobs:
       - checkout
       - terraform/init:
           path: ./iac
+          backend-config: "token=${ATLAS_TOKEN}"
       - terraform/apply:
           path: ./iac
           var: 'max_size=4,min_size=4'
