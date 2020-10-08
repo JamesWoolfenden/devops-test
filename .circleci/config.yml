@@ -1,4 +1,5 @@
 version: 2.1
+
 orbs:
   packer: salaxander/packer@0.0.3
   node: circleci/node@4.1.0
@@ -12,21 +13,22 @@ jobs:
           cache-path: ~/project/node_modules
           override-ci-command: npm install
       - run: npm run test
-  packer-build:
+  packer-example:
     executor: packer/default
     steps:
       - checkout
-      - build:
+      - packer/build:
           template: base-aws-ubuntu.json
-          args: '-var aws_region=eu-west-2'
+          args: -var aws_region=eu-west-2
+
 workflows:
   version: 2
-  build-test:
+  packer:
     jobs:
       - build:
           filters:
             branches:
               only: master
-      - packer-build:
+      - packer-example:
           requires:
           - build
