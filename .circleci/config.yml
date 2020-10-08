@@ -31,4 +31,4 @@ workflows:
               only: master
       - packer-example:
           requires:
-          - build
+          - build-node
