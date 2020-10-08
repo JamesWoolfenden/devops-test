@@ -39,7 +39,7 @@ resource "aws_security_group" "instances" {
 
   tags = var.common_tags
 
-  vpc_id = var.vpc_id
+  vpc_id = data.aws_vpc.default.id
 
   timeouts {}
 }

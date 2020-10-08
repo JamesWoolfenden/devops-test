@@ -33,5 +33,5 @@ resource "aws_security_group" "elb" {
   name = "build-elb"
 
   tags = var.common_tags
-  vpc_id = var.vpc_id
+  vpc_id = data.aws_vpc.default.id
 }
