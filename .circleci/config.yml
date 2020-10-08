@@ -26,11 +26,12 @@ jobs:
     steps:
       - checkout
       - terraform/init:
-          path: .
+          path: ./iac
       - terraform/apply:
-          path: .
-      - terraform/destroy:
-          path: .
+          path: ./iac
+          var: 'max_size=4,min_size=4'
+      - terraform/apply:
+          path: ./iac
     working_directory: ~/iac
 workflows:
   version: 2
