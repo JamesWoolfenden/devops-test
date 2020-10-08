@@ -3,6 +3,7 @@ version: 2.1
 orbs:
   packer: salaxander/packer@0.0.3
   node: circleci/node@4.1.0
+  terraform: circleci/terraform@1.0.2
 jobs:
   build-node:
     docker:
@@ -13,14 +14,24 @@ jobs:
           cache-path: ~/project/node_modules
           override-ci-command: npm install
       - run: npm run test
-  packer-example:
+  packer-build:
     executor: packer/default
     steps:
       - checkout
       - packer/build:
           template: base-aws-ubuntu.json
           args: -var aws_region=eu-west-1
-
+  scale-up:
+    executor: terraform/default
+    steps:
+      - checkout
+      - terraform/init:
+          path: .
+      - terraform/apply:
+          path: .
+      - terraform/destroy:
+          path: .
+    working_directory: ~/iac
 workflows:
   version: 2
   packer:
@@ -29,6 +40,9 @@ workflows:
           filters:
             branches:
               only: master
-      - packer-example:
+      - packer-build:
           requires:
             - build-node
+      - scale-up:
+          requires:
+            - packer-build
