@@ -4,7 +4,8 @@ orbs:
   node: circleci/node@4.1.0
 jobs:
   build:
-    executor: node/default
+    docker:
+      - image: 'cimg/base:stable'
     steps:
       - checkout
       - node/install-packages:
@@ -20,7 +21,6 @@ jobs:
           args: '-var aws_region=eu-west-2'
 workflows:
   version: 2
-
   build-test:
     jobs:
       - build:
