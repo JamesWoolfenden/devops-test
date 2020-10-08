@@ -31,8 +31,10 @@ jobs:
       - terraform/apply:
           path: ./iac
           var: 'max_size=4,min_size=4'
+          backend_config: "token=${ATLAS_TOKEN}"
       - terraform/apply:
           path: ./iac
+          backend_config: "token=${ATLAS_TOKEN}"
     working_directory: ~/iac
 workflows:
   version: 2
