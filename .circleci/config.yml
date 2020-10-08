@@ -6,7 +6,7 @@ orbs:
 jobs:
   build-node:
     docker:
-      - image: 'circleci/node:latest'
+      - image: "circleci/node:latest"
     steps:
       - checkout
       - node/install-packages:
@@ -19,7 +19,7 @@ jobs:
       - checkout
       - packer/build:
           template: base-aws-ubuntu.json
-          args: -var aws_region=eu-west-2
+          args: -var aws_region=eu-west-1
 
 workflows:
   version: 2
@@ -31,4 +31,4 @@ workflows:
               only: master
       - packer-example:
           requires:
-          - build-node
+            - build-node
