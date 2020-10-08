@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  packer: salaxander/packer@0.3
+  packer: salaxander/packer@0.0.3
   node: circleci/node@4.1.0
 jobs:
   build:
