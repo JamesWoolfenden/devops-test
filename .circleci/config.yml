@@ -25,12 +25,9 @@ jobs:
     executor: terraform/default
     steps:
       - checkout
-      - terraform/init:
-          path: ./iac
-          backend_config: "token=${ATLAS_TOKEN}"
-          context: terraform
       - terraform/apply:
           path: ./iac
+          context: terraform
           var: 'max_size=4,min_size=4'
           backend_config: "token=${ATLAS_TOKEN}"
           persist-workspace: true
