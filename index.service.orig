@@ -1,0 +1,16 @@
+[Unit]
+Description=index.js as a service
+<<<<<<< HEAD
+After=network.target
+=======
+>>>>>>> 9cfd753d61b8fb145dc89528777dbf27ecd91a58
+
+[Service]
+Environment=NODE_PORT=3000
+Type=simple
+User=ubuntu
+ExecStart=/usr/bin/node /home/ubuntu/index.js
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target:
