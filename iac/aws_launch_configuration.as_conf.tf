@@ -4,9 +4,9 @@ resource "aws_launch_configuration" "as_conf" {
   instance_type               = "t3.micro"
   associate_public_ip_address = false
   ebs_optimized               = false
-  enable_monitoring           = false
+  enable_monitoring           = true
+  key_name                    = "build2"
 
-  user_data = "forever start index.js"
 
   security_groups = [
     aws_security_group.instances.id

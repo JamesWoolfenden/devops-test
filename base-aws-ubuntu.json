@@ -19,6 +19,11 @@
       "destination": "package.json"
     },
     {
+      "type": "file",
+      "source": "index.service",
+      "destination":"index.service"
+    },
+    {
       "type": "shell",
       "script": "install.sh"
     }
