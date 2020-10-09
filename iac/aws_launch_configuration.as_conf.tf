@@ -6,7 +6,8 @@ resource "aws_launch_configuration" "as_conf" {
   ebs_optimized               = false
   enable_monitoring           = false
 
-  key_name = "build"
+  user_data = "forever start index.js"
+
   security_groups = [
     aws_security_group.instances.id
   ]
