@@ -26,11 +26,11 @@ jobs:
     steps:
       - checkout
       - run:
-          command: terraform init -backend-config "token=${ATLAS_TOKEN}" ~/iac
+          command: terraform init -backend-config "token=${ATLAS_TOKEN}" ~/project/iac
       - run:
-          command: terraform apply -var 'max_size=4' -var 'min_size=4' -auto-approve ~/iac
+          command: terraform apply -var 'max_size=4' -var 'min_size=4' -auto-approve ~/project/iac
       - run:
-          command: terraform apply -auto-approve ~/iac
+          command: terraform apply -auto-approve ~/project/iac
 workflows:
   version: 2
   packer:
