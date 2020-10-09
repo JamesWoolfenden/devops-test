@@ -6,7 +6,6 @@ echo ---------------------
 echo "NOW INSTALL SERVICE"
 echo ---------------------
 sudo cp index.service /etc/systemd/system/index.service
-sudo chmod 644 /etc/systemd/system/index.service
 echo ---------------------
 echo "ENABLE SERVICE"
 echo ---------------------
@@ -16,7 +15,6 @@ echo "Start SERVICE"
 echo ---------------------
 sudo systemctl start index.service
 sudo systemctl status index.service
-sudo systemd-analyze verify index.service
 echo ---------------------
 echo "Enable on reboot"
 echo ---------------------
