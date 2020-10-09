@@ -2,18 +2,23 @@
 
 
 variable "common_tags" {
-    type = map
-    default={
-        "createdby"= "Terraform"
-    }
+  type = map
+  default = {
+    "createdby" = "Terraform"
+  }
 }
 
 variable "min_size" {
-  type = number
-  default=2
+  type    = number
+  default = 2
 }
 
 variable "max_size" {
-  type = number
-  default=2
+  type    = number
+  default = 2
+}
+
+variable "region" {
+  type    = string
+  default = "eu-west-1"
 }

@@ -1,9 +1,9 @@
 resource "aws_elb" "build" {
   name = "build"
   availability_zones = [
-      "eu-west-2a",
-      "eu-west-2b",
-      "eu-west-2c"]
+      "${var.region}a",
+      "${var.region}b",
+      "${var.region}c"]
 
   listener {
     instance_port     = 3000

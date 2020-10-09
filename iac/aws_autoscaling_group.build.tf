@@ -4,8 +4,8 @@ resource "aws_autoscaling_group" "build" {
   max_size             = var.max_size
   min_size             = var.min_size
   availability_zones        = [
-            "eu-west-2a",
-            "eu-west-2b",
+            "${var.region}a",
+            "${var.region}b",
         ]
   load_balancers = [aws_elb.build.id]
 
