@@ -8,4 +8,8 @@ resource "aws_launch_configuration" "as_conf" {
   security_groups = [
     aws_security_group.instances.id
   ]
+
+   lifecycle {
+    create_before_destroy = true
+  }
 }
