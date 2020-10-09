@@ -1,5 +1,5 @@
 resource "aws_launch_configuration" "as_conf" {
-  name                        = "build"
+  name_prefix                 = "build"
   image_id                    = data.aws_ami.build.id
   instance_type               = "t3.micro"
   associate_public_ip_address = false
