@@ -5,11 +5,13 @@ resource "aws_launch_configuration" "as_conf" {
   associate_public_ip_address = false
   ebs_optimized               = false
   enable_monitoring           = false
+
+  key_name = "build"
   security_groups = [
     aws_security_group.instances.id
   ]
 
-   lifecycle {
+  lifecycle {
     create_before_destroy = true
   }
 }
