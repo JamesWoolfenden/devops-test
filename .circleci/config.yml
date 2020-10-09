@@ -23,17 +23,15 @@ jobs:
           args: -var aws_region=eu-west-1
   scale-up:
     executor: terraform/default
+    working_directory: ~/iac
     steps:
       - checkout
       - run:
           command: terraform init -backend-config "token=${ATLAS_TOKEN}"
-          working_directory: ~/iac
       - run:
           command: terraform apply -var 'max_size=4' -var 'min_size=4' -auto-approve
-          working_directory: ~/iac
       - run:
           command: terraform apply -auto-approve
-          working_directory: ~/iac
 workflows:
   version: 2
   packer:
