@@ -1,7 +1,7 @@
 data "aws_ami" "build" {
 
-  most_recent      = true
-  owners           = ["self"]
+  most_recent = true
+  owners      = ["self"]
 
 
   filter {

@@ -1,5 +1,6 @@
 [Unit]
 Description=index.js as a service
+After=network.target
 
 [Service]
 Environment=NODE_PORT=3000

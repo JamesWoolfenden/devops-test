@@ -1,9 +1,9 @@
 resource "aws_elb" "build" {
   name = "build"
   availability_zones = [
-      "${var.region}a",
-      "${var.region}b",
-      "${var.region}c"]
+    "${var.region}a",
+    "${var.region}b",
+  "${var.region}c"]
 
   listener {
     instance_port     = 3000
@@ -12,9 +12,9 @@ resource "aws_elb" "build" {
     lb_protocol       = "http"
   }
 
-security_groups             = [
-            aws_security_group.elb.id
-        ]
+  security_groups = [
+    aws_security_group.elb.id
+  ]
 
   health_check {
     healthy_threshold   = 10
