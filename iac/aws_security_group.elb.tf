@@ -18,7 +18,7 @@ resource "aws_security_group" "elb" {
   ingress = [
     {
       cidr_blocks = [
-        "${module.data.ip}/32",
+        "0.0.0.0/0",
       ]
       description      = "For testing"
       from_port        = 80
