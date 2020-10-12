@@ -10,4 +10,4 @@ ExecStart=/usr/bin/node /home/ubuntu/index.js
 Restart=on-failure
 
 [Install]
-WantedBy=multi-user.target:
+WantedBy=multi-user.target
