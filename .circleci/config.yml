@@ -38,7 +38,7 @@ workflows:
       - build-node:
           filters:
             branches:
-              only: master
+              ignore: master
       - packer-build:
           requires:
             - build-node

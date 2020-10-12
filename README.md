@@ -17,18 +17,19 @@ Your CI job should:
 - The load-balancer should use a round-robin strategy.
 - The application server should return the response "Hi there! I'm being served from {hostname}!".
 
-## Context
+## Solution
 
-We are testing your ability to implement modern automated infrastructure, as well as general knowledge of system administration. In your solution you should emphasize readability, maintainability and DevOps methodologies.
+The build for this solution uses CircleCI, it is a build process in 3 parts:
 
-## Submit your solution
+1. Basic CI
+   This just builds and runs your tests.
+2. Packer build
+   Creates an AMI for AWS that has the node app installed as a service.
+3. Terraform IAC
+   This build a autoscaling group for the AMIs. Each time a new AMI is created a new launch configuration is made and scales the no of instances from 2 to 4. This means you now how 2 of the old and 2 of the new instances running.
+   The next step is scale down the no of instances to 2, which should leave with 2 of the new AMIs based instances (assumming you end up with >2 after the scale up otherwise you still have 2 running instances).
 
-Create a public Github repository and push your solution in it. Commit often - we would rather see a history of trial and error than a single monolithic push. When you're finished, send us the URL to the repository.
+Whats missing or could be different?
+I could have gone with a container solution but I thought creating a cluster would be a bit OTT.
 
-## Running this web application
-
-This is a NodeJS application:
-
-- `npm test` runs the application tests
-- `npm test` runs the application tests
-- `npm start` starts the http server
+James
